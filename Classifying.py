@@ -17,7 +17,7 @@ def mlp_classify(x_train, y_train, x_test, y_test):
     scores_recall       = cross_val_score(mlp, x_train, y_train, cv=5, scoring='recall')
     scores_presision    = cross_val_score(mlp, x_train, y_train, cv=5, scoring='average_precision')
 
-    print "MLP: ",  scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("MLP: ",  scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
@@ -30,7 +30,7 @@ def rf_classify(x_train, y_train, x_test, y_test):
     scores_recall = cross_val_score(rf, x_train, y_train, cv=5, scoring='recall')
     scores_presision = cross_val_score(rf, x_train, y_train, cv=5, scoring='average_precision')
 
-    print "RF: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("RF: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
 
@@ -46,7 +46,7 @@ def linearsvm_classify(x_train, y_train, x_test, y_test):
     scores_recall = cross_val_score(model, x_train, y_train, cv=5, scoring='recall')
     scores_presision = cross_val_score(model, x_train, y_train, cv=5, scoring='average_precision')
 
-    print "LSVM: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("LSVM: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
@@ -59,7 +59,7 @@ def adaboost_classify(x_train, y_train, x_test, y_test):
     scores_recall = cross_val_score(bdt, x_train, y_train, cv=5, scoring='recall')
     scores_presision = cross_val_score(bdt, x_train, y_train, cv=5, scoring='average_precision')
 
-    print "Adaboost: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("Adaboost: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
 
@@ -82,7 +82,7 @@ def ensemble_classify_hardVoting(x_train, y_train, x_test, y_test):
     scores_recall = cross_val_score(eclf, x_train, y_train, cv=5, scoring='recall')
     scores_presision = cross_val_score(eclf, x_train, y_train, cv=5, scoring='average_precision')
 
-    print "ENS: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("ENS: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
 
@@ -97,7 +97,7 @@ def lda_classify(X, y, parameters, score, k_fold_num, shrinkage=None):
     scores_acc = cross_val_score(clf, X, y, cv=k_fold_num, scoring='accuracy')
     scores_recall = cross_val_score(clf, X, y, cv=k_fold_num, scoring='recall')
     scores_presision = cross_val_score(clf, X, y, cv=k_fold_num, scoring='average_precision')
-    print "LDA: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
+    print("LDA: ", scores_acc.mean(), scores_recall.mean(), scores_presision.mean())
 
     return scores_acc.mean(), scores_recall.mean(), scores_presision.mean()
 

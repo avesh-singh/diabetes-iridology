@@ -3,7 +3,8 @@ import numpy as np
 from Classifying import *
 from matplotlib import pyplot as plt
 from featureExtraction import *
-import cPickle
+# import six.moves.cPickle as cPickle
+import pickle
 import argparse
 import os
 
@@ -48,13 +49,13 @@ if __name__ == "__main__":
     elif dataType=="PersonInvert":
         dataFolder = "personBase_invert"
 
-    controlImageArr = cPickle.load(open(os.path.join(dataPath, dataFolder, "controlImageArr.p"), "rb"))
-    diabeteImageArr = cPickle.load(open(os.path.join(dataPath, dataFolder, "diabeteImageArr.p"), "rb"))
-    drLabels = cPickle.load(open(os.path.join(dataPath, dataFolder, "DR_type.p"), "rb"))
-    controlManner = cPickle.load(open(os.path.join(dataPath, dataFolder, "controllingManner.p"), "rb"))
+    controlImageArr = pickle.load(open(os.path.join(dataPath, dataFolder, "controlImageArr.p"), "rb"), encoding='bytes')
+    diabeteImageArr = pickle.load(open(os.path.join(dataPath, dataFolder, "diabeteImageArr.p"), "rb"), encoding='bytes')
+    drLabels = pickle.load(open(os.path.join(dataPath, dataFolder, "DR_type.p"), "rb"), encoding='bytes')
+    controlManner = pickle.load(open(os.path.join(dataPath, dataFolder, "controllingManner.p"), "rb"), encoding='bytes')
 
     # show shapes of each array
-    print diabeteImageArr.shape, controlImageArr.shape
+    print(diabeteImageArr.shape, controlImageArr.shape)
 
     # show sample image from each data array
     if int(args.isPlot) == 1:
@@ -177,7 +178,7 @@ if __name__ == "__main__":
             irisData = np.array(irisData, dtype=np.float32)
             isDiabeteLabel = np.array(isDiabeteLabel, dtype=np.float32)
             diabeticLabel = np.array(diabeticLabel, dtype=np.float32)
-            print "All Data: ", irisData.shape
+            print("All Data: ", irisData.shape)
 
             # train-test-val splitting
             X_train = irisData[shuffleIdx[:nTrain], :]
@@ -188,8 +189,8 @@ if __name__ == "__main__":
             np.savetxt("sampleFeature.txt", X_train)
 
             ## Show dimension of train and test ...
-            print "Train Data:", X_train.shape, Y_train.shape
-            print "Test  Data:", X_test.shape, Y_test.shape
+            print("Train Data:", X_train.shape, Y_train.shape)
+            print("Test  Data:", X_test.shape, Y_test.shape)
 
             ## LDA Classifing
             tuned_parameters = [{'solver': ['lsqr'], 'shrinkage':np.linspace(0.05, 0.95, 70)}]
@@ -231,4 +232,4 @@ if __name__ == "__main__":
                 plt.plot(x_axis, np.array(errLogs))
                 plt.show()
 
-    print mean(meanAcc[0]), mean(meanAcc[1]), mean(meanAcc[2])
+    print(mean(meanAcc[0]), mean(meanAcc[1]), mean(meanAcc[2]))

@@ -36,7 +36,7 @@ def lbpFeature(normalizedIrisPatch, regions):
     for reg in regions:
         croppedImage = normalizedIrisPatch[upperCutHeight:, reg[0]:reg[1]]
         lbp = feature.local_binary_pattern(croppedImage, 16, 2, method='uniform')
-        hist, _ = np.histogram(lbp, normed=True, bins=P + 2, range=(0, P + 2))
+        hist, _ = np.histogram(lbp, density=True, bins=P + 2, range=(0, P + 2))
         lbpFea.append(hist)
 
     lbpFea = array(lbpFea, dtype=float32)

@@ -40,7 +40,7 @@ def draw_last_circle(dlc_cnt):
 
 def detect_pupil_and_iris(rout_address, is_plot):
     for ii in os.listdir(rout_address):
-        print (rout_address+ii)
+        print((rout_address+ii))
         if os.path.isdir(rout_address+ii):
             if not os.path.exists(rout_address+ii+"/ans"):
                 os.makedirs(rout_address+ii+"/ans")
@@ -81,7 +81,7 @@ def detect_pupil_and_iris(rout_address, is_plot):
                         plt.imshow(threshIris)
 
                     II = threshIris
-                    II = rgb2gray(II)
+                    # II = rgb2gray(II)
 
                     init = my_circle(orginalImage.shape[1] / 2, orginalImage.shape[0] / 2, 100)
                     snake = active_contour(gaussian(II, 3), init, alpha=0.2, beta=100)
@@ -111,7 +111,7 @@ def detect_pupil_and_iris(rout_address, is_plot):
                             plt.imshow(threshIris)
 
                         II = threshIris
-                        II = rgb2gray(II)
+                        # II = rgb2gray(II)
 
                         snake = active_contour(gaussian(II, 3), init, alpha=0.2, beta=100)
                         if is_plot:
@@ -204,8 +204,8 @@ def detect_pupil_and_iris(rout_address, is_plot):
                         OuterSnake_circle[:, 1] = y
 
 
-                    print ('Iris center', li_center)
-                    print ('Iris radious', li_radius)
+                    print(('Iris center', li_center))
+                    print(('Iris radious', li_radius))
 
                     unchanged_img = cv2.cvtColor(unchanged_img, cv2.COLOR_BGR2RGB)
                     if is_plot:
@@ -222,9 +222,9 @@ def detect_pupil_and_iris(rout_address, is_plot):
                     # Ring to Rect Transformation
                     grayImage = value
                     pupilCenter = (lp_center[0], lp_center[1])
-                    pupilRadius = np.int(lp_radius)
+                    pupilRadius = np.int32(lp_radius)
                     irisCenter = (li_center[0], li_center[1])
-                    irisRadius = np.int(li_radius)
+                    irisRadius = np.int32(li_radius)
 
                     pupilContour = []
                     pupilContour.append(snake2)
